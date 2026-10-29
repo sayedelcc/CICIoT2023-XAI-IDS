@@ -1,0 +1,13 @@
+Condition,Model A,Model B,Metric,Paired t-statistic,p-value
+Before_Balancing,RandomForest,XGBoost,Accuracy,-59.57588749984384,5.330115929931668e-13
+Before_Balancing,RandomForest,XGBoost,Balanced Accuracy,-9.510943309881673,5.422876302464822e-06
+Before_Balancing,RandomForest,XGBoost,Macro Precision,18.939070602912953,1.4675956075846675e-08
+Before_Balancing,RandomForest,XGBoost,Macro Recall,-9.510943309881673,5.422876302464822e-06
+Before_Balancing,RandomForest,XGBoost,Macro F1,-4.46537139229961,0.0015650784627615336
+Before_Balancing,RandomForest,XGBoost,Weighted F1,-65.22867505293262,2.3614003367906005e-13
+After_Balancing,RandomForest,XGBoost,Accuracy,-59.54294552209243,5.356653243413522e-13
+After_Balancing,RandomForest,XGBoost,Balanced Accuracy,-83.68401905866783,2.5165537842279887e-14
+After_Balancing,RandomForest,XGBoost,Macro Precision,51.971868166302436,1.8157068870327538e-12
+After_Balancing,RandomForest,XGBoost,Macro Recall,-83.68401905866783,2.5165537842279887e-14
+After_Balancing,RandomForest,XGBoost,Macro F1,36.6182390860614,4.1851227002824105e-11
+After_Balancing,RandomForest,XGBoost,Weighted F1,-80.34207546781461,3.630010789588658e-14
