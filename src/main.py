@@ -1,4 +1,5 @@
-# main.py -- CICIoT2023 + Controlled Class Imbalance + SHAP + LIME + Wilcoxon Test
+# main_cv10.py -- CICIoT2023 + Controlled Class Imbalance + SHAP + LIME + Wilcoxon Test
+# Evaluation protocol: Stratified 10-fold cross-validation
 # ---------------------------------------------------------------------------------
 
 import os
@@ -8,10 +9,9 @@ import time
 import pandas as pd
 import numpy as np
 
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.utils.class_weight import compute_sample_weight
 
 from xgboost import XGBClassifier
 from sklearn.neural_network import MLPClassifier
@@ -26,8 +26,7 @@ from sklearn.metrics import (
     balanced_accuracy_score
 )
 
-import joblib
-from scipy.stats import t, wilcoxon
+from scipy.stats import wilcoxon
 import shap
 from lime.lime_tabular import LimeTabularExplainer
 
@@ -43,17 +42,15 @@ DATA_FOLDER = r"C:\Users\Administrator\OneDrive\Desktop\archive"
 # Number of rows read from EACH CSV file (Use None to read all rows)
 SAMPLE_NROWS = 100000
 
-# Ten repeated random stratified train-test splits.
-N_RUNS = 10
-RANDOM_SEEDS = list(range(42, 52))
-
-TEST_SIZE = 0.20
+# Stratified K-fold cross-validation
+N_FOLDS = 10
+CV_SEED = 42
 
 # Maximum number of training samples retained/target per class.
 MAX_TRAIN_SAMPLES_PER_CLASS = 20000
 
 SAVE_MODEL_PATH = "models/"
-RESULTS_PATH = "results/"
+RESULTS_PATH = "results_cv10/"
 
 os.makedirs(SAVE_MODEL_PATH, exist_ok=True)
 os.makedirs(RESULTS_PATH, exist_ok=True)
@@ -261,11 +258,11 @@ def train_models(X_train, y_train, balanced=False, random_state=42):
     models = {}
     print(f"\nTraining models | Oversampled: {balanced}")
 
-    rf = RandomForestClassifier(n_estimators=100, random_state=random_state, n_jobs=-1)
+    rf = RandomForestClassifier(n_estimators=100, random_state=random_state, n_jobs=1)
     rf.fit(X_train, y_train)
     models["RandomForest"] = rf
 
-    xgb = XGBClassifier(n_estimators=100, eval_metric="mlogloss", random_state=random_state, n_jobs=-1)
+    xgb = XGBClassifier(n_estimators=100, eval_metric="mlogloss", random_state=random_state, n_jobs=1)
     xgb.fit(X_train, y_train)
     models["XGBoost"] = xgb
 
@@ -280,7 +277,7 @@ def train_models(X_train, y_train, balanced=False, random_state=42):
 # EVALUATION
 # =========================================================
 
-def evaluate_model(model, X_test, y_test, model_name, condition, class_names=None, run_id=None, save_detailed=True):
+def evaluate_model(model, X_test, y_test, model_name, condition, class_names=None, fold_id=None, save_detailed=True):
     start_time = time.perf_counter()
     y_pred = model.predict(X_test)
     inference_time = time.perf_counter() - start_time
@@ -294,29 +291,29 @@ def evaluate_model(model, X_test, y_test, model_name, condition, class_names=Non
     weighted_f1 = f1_score(y_test, y_pred, average="weighted", zero_division=0)
 
     if save_detailed:
-        run_suffix = f"_Run{run_id}" if run_id is not None else ""
+        fold_suffix = f"_Fold{fold_id}" if fold_id is not None else ""
         report = classification_report(
             y_test, y_pred, labels=np.arange(len(class_names)) if class_names else None,
             target_names=class_names, zero_division=0, output_dict=True
         )
         report_df = pd.DataFrame(report).transpose()
-        report_df.to_csv(os.path.join(RESULTS_PATH, f"{model_name}_{condition}{run_suffix}_classification_report.csv"))
+        report_df.to_csv(os.path.join(RESULTS_PATH, f"{model_name}_{condition}{fold_suffix}_classification_report.csv"))
 
-        cm = confusion_matrix(y_test, y_pred)
-        pd.DataFrame(cm).to_csv(os.path.join(RESULTS_PATH, f"{model_name}_{condition}{run_suffix}_confusion_matrix.csv"), index=False)
+        cm = confusion_matrix(y_test, y_pred, labels=np.arange(len(class_names)) if class_names else None)
+        pd.DataFrame(cm).to_csv(os.path.join(RESULTS_PATH, f"{model_name}_{condition}{fold_suffix}_confusion_matrix.csv"), index=False)
 
         plt.figure(figsize=(12, 10))
         plt.imshow(cm, aspect="auto")
         plt.xlabel("Predicted Class")
         plt.ylabel("True Class")
-        plt.title(f"Confusion Matrix - {model_name} {condition}{run_suffix}")
+        plt.title(f"Confusion Matrix - {model_name} {condition}{fold_suffix}")
         plt.colorbar()
         plt.tight_layout()
-        plt.savefig(os.path.join(RESULTS_PATH, f"{model_name}_{condition}{run_suffix}_confusion_matrix.png"), dpi=300)
+        plt.savefig(os.path.join(RESULTS_PATH, f"{model_name}_{condition}{fold_suffix}_confusion_matrix.png"), dpi=300)
         plt.close()
 
     return {
-        "Run": run_id,
+        "Fold": fold_id,
         "Model": model_name,
         "Condition": condition,
         "Accuracy": accuracy,
@@ -331,7 +328,7 @@ def evaluate_model(model, X_test, y_test, model_name, condition, class_names=Non
 
 
 # =========================================================
-# STATISTICAL SIGNIFICANCE TESTS (WILCOXON SIGNED-RANK TEST)
+# STATISTICAL SIGNIFICANCE TESTS (WILCOXON SIGNED-RANK TEST, paired over folds)
 # =========================================================
 
 def run_statistical_tests(results_df):
@@ -344,8 +341,8 @@ def run_statistical_tests(results_df):
         pairs = [("RandomForest", "XGBoost"), ("RandomForest", "MLP"), ("XGBoost", "MLP")]
 
         for model_a, model_b in pairs:
-            scores_a = sub_df[sub_df["Model"] == model_a].sort_values("Run")
-            scores_b = sub_df[sub_df["Model"] == model_b].sort_values("Run")
+            scores_a = sub_df[sub_df["Model"] == model_a].sort_values("Fold")
+            scores_b = sub_df[sub_df["Model"] == model_b].sort_values("Fold")
 
             if len(scores_a) < 2 or len(scores_b) < 2:
                 continue
@@ -372,11 +369,11 @@ def run_statistical_tests(results_df):
     return stat_df
 
 
-def summarize_repeated_results(results_df):
+def summarize_cv_results(results_df):
     metric_columns = ["Accuracy", "Balanced Accuracy", "Macro Precision", "Macro Recall", "Macro F1", "Weighted F1"]
     rows = []
     for (condition, model_name), group in results_df.groupby(["Condition", "Model"]):
-        row = {"Condition": condition, "Model": model_name, "Runs": len(group)}
+        row = {"Condition": condition, "Model": model_name, "Folds": len(group)}
         for metric in metric_columns:
             values = group[metric].to_numpy(dtype=float)
             row[f"{metric} Mean"] = np.mean(values)
@@ -384,7 +381,7 @@ def summarize_repeated_results(results_df):
         rows.append(row)
 
     summary_df = pd.DataFrame(rows)
-    summary_df.to_csv(os.path.join(RESULTS_PATH, "repeated_10_runs_summary_mean_std.csv"), index=False)
+    summary_df.to_csv(os.path.join(RESULTS_PATH, "cv10_summary_mean_std.csv"), index=False)
     return summary_df
 
 
@@ -439,13 +436,19 @@ def main():
     last_rf_model = None
     last_X_train_bal = None
     last_X_test_prep = None
+    last_y_test = None
+    feature_names = None
 
-    for run_id, seed in enumerate(RANDOM_SEEDS, start=1):
-        print(f"\n================ RUN {run_id}/{N_RUNS} (Seed: {seed}) ================")
+    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=CV_SEED)
 
-        X_train_raw, X_test_raw, y_train_raw, y_test = train_test_split(
-            X_raw, y, test_size=TEST_SIZE, stratify=y, random_state=seed
-        )
+    for fold_id, (train_idx, test_idx) in enumerate(skf.split(X_raw, y), start=1):
+        seed = CV_SEED + fold_id
+        print(f"\n================ FOLD {fold_id}/{N_FOLDS} (Seed: {seed}) ================")
+
+        X_train_raw = X_raw.iloc[train_idx]
+        X_test_raw = X_raw.iloc[test_idx]
+        y_train_raw = y[train_idx]
+        y_test = y[test_idx]
 
         X_train_capped, y_train_capped = cap_training_set_per_class(
             X_train_raw, y_train_raw, max_samples_per_class=MAX_TRAIN_SAMPLES_PER_CLASS, random_state=seed
@@ -456,7 +459,7 @@ def main():
         # Baseline Models (Before Oversampling)
         models_before = train_models(X_train_prep.values, y_train_capped, balanced=False, random_state=seed)
         for name, model in models_before.items():
-            res = evaluate_model(model, X_test_prep.values, y_test, name, "Before_Balancing", class_names, run_id)
+            res = evaluate_model(model, X_test_prep.values, y_test, name, "Before_Balancing", class_names, fold_id)
             results_list.append(res)
 
         # Oversampled Models (After Oversampling)
@@ -465,29 +468,31 @@ def main():
         )
         models_after = train_models(X_train_bal, y_train_bal, balanced=True, random_state=seed)
         for name, model in models_after.items():
-            res = evaluate_model(model, X_test_prep.values, y_test, name, "After_Balancing", class_names, run_id)
+            res = evaluate_model(model, X_test_prep.values, y_test, name, "After_Balancing", class_names, fold_id)
             results_list.append(res)
 
-        # Save reference for XAI from last run
-        if run_id == N_RUNS:
+        # Save reference for XAI from last fold
+        if fold_id == N_FOLDS:
             last_rf_model = models_after["RandomForest"]
             last_X_train_bal = X_train_bal
             last_X_test_prep = X_test_prep
+            last_y_test = y_test
             feature_names = X_train_prep.columns.tolist()
 
     # Save summary results
     results_df = pd.DataFrame(results_list)
-    results_df.to_csv(os.path.join(RESULTS_PATH, "repeated_10_runs_all_results.csv"), index=False)
+    results_df.to_csv(os.path.join(RESULTS_PATH, "cv10_all_results.csv"), index=False)
 
-    summarize_repeated_results(results_df)
+    summarize_cv_results(results_df)
     run_statistical_tests(results_df)
 
     # Compute XAI explanations (SHAP & LIME)
     if last_rf_model is not None:
         explain_shap(last_rf_model, last_X_test_prep.values[:200], feature_names)
-        explain_lime(last_rf_model, last_X_train_bal, last_X_test_prep.values, y_test, feature_names)
+        explain_lime(last_rf_model, last_X_train_bal, last_X_test_prep.values, last_y_test, feature_names)
 
     print("\nPipeline execution finished successfully!")
+
 
 if __name__ == "__main__":
     main()
