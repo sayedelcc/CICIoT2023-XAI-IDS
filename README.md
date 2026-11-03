@@ -1,146 +1,71 @@
-Explainable AI (XAI) System for IoT Intrusion Detection
+# Class-imbalance handling and explainability for multi-class IoT intrusion detection
 
+Code accompanying the study of imbalance-handling strategies (class weighting, random oversampling, SMOTE,
+Borderline-SMOTE, ADASYN) and of SHAP vs LIME explanations for tree-based and neural intrusion-detection
+models on two independent datasets: **CICIoT2023** (34 classes) and **Edge-IIoTset** (15 classes).
 
+## Repository layout
 
-This repository contains the source code and experimental pipeline for an Explainable Artificial Intelligence (XAI)-based Multiclass Intrusion Detection System (IDS) tailored for Internet of Things (IoT) environments.
+| File | Purpose |
+|---|---|
+| `leakage_check.py` | Checks exact-duplicate rows in CICIoT2023 and train/test overlap for the stratified split |
+| `cic_strategies.py` | CICIoT2023: stratified 10-fold CV, Baseline / ClassWeight / RandomOverSampler / SMOTE with RF, XGBoost, MLP; Wilcoxon + Holm |
+| `edge_strategies.py` | Edge-IIoTset: same protocol, six strategies (adds Borderline-SMOTE and ADASYN) |
+| `xai_eval.py` | Quantitative evaluation of SHAP vs LIME (deletion fidelity, stability, agreement, cost) |
+| `requirements.txt` | Pinned library versions |
+| `results/` | Result tables (CSV) and figures produced by the scripts above |
 
+## Environment
 
-
-📌 Project Overview
-
-
-
-With the rapid proliferation of IoT devices, securing network traffic against complex cyberattacks has become vital. This project presents a framework designed to evaluate machine learning classifiers under severe class imbalance and provide transparent model predictions using post-hoc XAI techniques.
-
-
-
-Dataset: CICIoT2023 Dataset (Fine-grained 34-class evaluation comprising benign and 33 attack categories).
-
-
-
-Models Evaluated:
-
-
-
-Random Forest (RF)
-
-
-
-Extreme Gradient Boosting (XGBoost)
-
-
-
-Multi-Layer Perceptron (MLP)
-
-
-
-Explainability (XAI):
-
-
-
-SHAP (SHapley Additive exPlanations): Global feature attribution analysis.
-
-
-
-LIME (Local Interpretable Model-agnostic Explanations): Instance-level local explanation.
-
-
-
-Imbalance Mitigation: Random Oversampling applied strictly to training partitions across 10-fold repeated stratified splits.
-
-
-
-🛠️ Repository Structure
-
-
-
-.
-
-├── src/
-
-│   └── main.py                 # Core experimental pipeline \& model evaluation
-
-├── models/                     # Trained models (saved checkpoints)
-
-├── results/                    # Generated charts, figures, and execution logs
-
-├── requirements.txt            # Required Python packages
-
-├── README.md                   # Project documentation
-
-├── shap\_rf.png                 # Global SHAP feature importance plot
-
-└── lime\_example.html           # Local LIME explanation sample
-
-
-
-
-
-🚀 Getting Started
-
-
-
-Prerequisites
-
-
-
-Make sure you have Python 3.8+ installed on your system.
-
-
-
-Installation
-
-
-
-Clone this repository:
-
-
-
-git clone https://github.com/YOUR\_USERNAME/YOUR\_REPOSITORY\_NAME.git
-
-cd YOUR\_REPOSITORY\_NAME
-
-
-
-
-
-Install required dependencies:
-
-
-
+```
 pip install -r requirements.txt
+```
 
+## Data (not included)
 
+Download the datasets from their official sources and edit the path constants at the top of each script
+(the defaults are Windows paths and must be changed):
 
+* **CICIoT2023**: the 169 CSV files of the processed dataset in one folder (`DATA_FOLDER` / `CIC_FOLDER`).
+* **Edge-IIoTset**: the file `ML-EdgeIIoT-dataset.csv` (`DATA_PATH` / `EDGE_PATH`).
 
+## How to reproduce
 
-🔬 Experimental Pipeline
+```
+python leakage_check.py                 # duplicate / overlap check (CICIoT2023)
+python cic_strategies.py                # ~1 day on a single workstation; resumes automatically if interrupted
+python edge_strategies.py               # ~70 minutes
+python xai_eval.py edge                 # a few minutes
+python xai_eval.py cic                  # ~20 minutes
+```
 
+Each script writes its tables to its own `results_*` folder.
+`cic_strategies.py` stores every finished fold separately; re-running it continues from the first unfinished fold.
+Set `QUICK_TEST = True` in `xai_eval.py` or `N_FOLDS = 2` in the strategy scripts for a short sanity run.
 
+## Protocol summary
 
-Preprocessing \& Scaling: Features are standardized using StandardScaler fitted exclusively on the training sets to prevent data leakage.
+* **Splitting:** stratified K-fold (K = 10), fixed seed (42). Resampling, scaling, imputation and encoding are fitted on
+  the training part of each fold only.
+* **CICIoT2023 subset:** the first 100,000 rows of each of the 169 files (16.9 M rows). The training part of each fold is
+  capped at 20,000 rows per class before any strategy is applied, so the *Baseline* is a capped, not a raw, training set.
+* **Edge-IIoTset cleaning:** identifier / session / payload columns (IP addresses, timestamps, ports, payload fields) and the
+  binary label are removed; exact duplicate rows are dropped; constant columns are dropped.
+* **Statistics:** paired Wilcoxon signed-rank test over folds for each strategy vs Baseline, Holm-corrected per metric.
+  The folds share training data, so the p-values are approximate.
+* **XAI study:** 5 Random Forests trained on different 80 % subsamples of a capped training pool; explanations are computed for
+  instances that all five models classify correctly. SHAP = `TreeExplainer`; LIME = tabular explainer with 5,000 samples.
+  Fidelity = drop in predicted-class probability after replacing the top-k supporting features by their training median
+  (compared with random removal). Stability = Jaccard / Spearman agreement of feature rankings between the five models.
 
+## Known limitations
 
+* Evaluation uses random stratified partitions of each dataset; no temporal or cross-dataset transfer is evaluated.
+* The deletion test favours exact attribution methods such as `TreeExplainer` on tree ensembles.
+* ADASYN fails on some folds of Edge-IIoTset; failures are recorded and the test uses the folds that completed.
+* MLP training times recorded in the logs of the long CICIoT2023 run are not reliable (the machine was not
+  dedicated to the run).
 
-Repeated Stratified Splits: Evaluated across 10 independent stratified random 80:20 train-test splits.
+## License
 
-
-
-Imbalance Mitigation: Random oversampling is executed on training partitions to address minority-class detection challenges.
-
-
-
-Statistical Significance Testing: Includes non-parametric tests (e.g., Wilcoxon signed-rank test) to compare classifier performance.
-
-
-
-Post-Hoc Interpretability: Generates feature attribution scores via SHAP and LIME for the Random Forest model.
-
-
-
-📜 Citation \& License
-
-
-
-If you find this code or research useful, please consider citing our work. This project is licensed under the MIT License.
-
+Add the license of your choice (for example MIT) as a `LICENSE` file.
