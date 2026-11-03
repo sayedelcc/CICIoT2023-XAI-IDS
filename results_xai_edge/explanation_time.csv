@@ -1,0 +1,3 @@
+Method,Seconds per explanation
+SHAP (TreeExplainer),0.12352121098836263
+LIME (5000 samples),0.0723954594930013
