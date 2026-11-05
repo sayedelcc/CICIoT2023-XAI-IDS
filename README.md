@@ -1,5 +1,7 @@
 # Class-imbalance handling and explainability for multi-class IoT intrusion detection
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23977260.svg)](https://doi.org/10.5281/zenodo.23977260)
+
 Code accompanying the study of imbalance-handling strategies (class weighting, random oversampling, SMOTE,
 Borderline-SMOTE, ADASYN) and of SHAP vs LIME explanations for tree-based and neural intrusion-detection
 models on two independent datasets: **CICIoT2023** (34 classes) and **Edge-IIoTset** (15 classes).
@@ -67,6 +69,10 @@ Set `QUICK_TEST = True` in `xai_eval.py` or `N_FOLDS = 2` in the strategy script
 * ADASYN fails on some folds of Edge-IIoTset; failures are recorded and the test uses the folds that completed.
 * MLP training times recorded in the logs of the long CICIoT2023 run are not reliable (the machine was not
   dedicated to the run).
+
+## How to cite
+
+Archived release v1.0.0: https://doi.org/10.5281/zenodo.23977260 (see also `CITATION.cff`).
 
 ## License
 
