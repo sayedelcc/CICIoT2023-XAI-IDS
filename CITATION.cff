@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this code or the result tables, please cite them as below."
+type: software
+title: "Code and results for: Choosing Rebalancing and Explanation Strategies for Multi-Class IoT Intrusion Detection: An Empirical Study on CICIoT2023 and Edge-IIoTset"
+authors:
+  - given-names: "Elsayed Osama"
+    family-names: "Elcc"
+    affiliation: "Faculty of Computer and Information Sciences, Ain Shams University, Cairo, Egypt"
+  - given-names: "Alshaimaa"
+    family-names: "Abo-alian"
+    affiliation: "Faculty of Computer and Information Sciences, Ain Shams University, Cairo, Egypt"
+  - given-names: "Nagwa"
+    family-names: "Badr"
+    affiliation: "Faculty of Computer and Information Sciences, Ain Shams University, Cairo, Egypt"
+  - given-names: "Mohamed"
+    family-names: "Hashem"
+    affiliation: "Faculty of Computer and Information Sciences, Ain Shams University, Cairo, Egypt"
+repository-code: "https://github.com/sayedelcc/CICIoT2023-XAI-IDS"
+license: MIT
+version: "1.0.0"
+keywords:
+  - intrusion detection
+  - Internet of Things
+  - class imbalance
+  - explainable artificial intelligence
+  - SHAP
+  - LIME

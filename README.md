@@ -11,6 +11,7 @@ models on two independent datasets: **CICIoT2023** (34 classes) and **Edge-IIoTs
 | `leakage_check.py` | Checks exact-duplicate rows in CICIoT2023 and train/test overlap for the stratified split |
 | `cic_strategies.py` | CICIoT2023: stratified 10-fold CV, Baseline / ClassWeight / RandomOverSampler / SMOTE with RF, XGBoost, MLP; Wilcoxon + Holm |
 | `edge_strategies.py` | Edge-IIoTset: same protocol, six strategies (adds Borderline-SMOTE and ADASYN) |
+| `edge_confusion.py` | Edge-IIoTset: pooled confusion matrices of RF and XGBoost for the rare classes (Fingerprinting, MITM); shows where false positives and false negatives come from (imports code from `edge_strategies.py`) |
 | `xai_eval.py` | Quantitative evaluation of SHAP vs LIME (deletion fidelity, stability, agreement, cost) |
 | `requirements.txt` | Pinned library versions |
 | `results/` | Result tables (CSV) and figures produced by the scripts above |
@@ -35,6 +36,7 @@ Download the datasets from their official sources and edit the path constants at
 python leakage_check.py                 # duplicate / overlap check (CICIoT2023)
 python cic_strategies.py                # ~1 day on a single workstation; resumes automatically if interrupted
 python edge_strategies.py               # ~70 minutes
+python edge_confusion.py                # ~20 minutes; needs edge_strategies.py in the same folder
 python xai_eval.py edge                 # a few minutes
 python xai_eval.py cic                  # ~20 minutes
 ```
