@@ -1,0 +1,17 @@
+Class,Model,Strategy,True records,Predicted as class,Predicted / true,TP,FP,FN,Precision (pooled),Recall (pooled),F1 (pooled),F1 (mean over folds),Top false-positive sources,Top false-negative destinations
+Fingerprinting,RandomForest,Baseline,853,738,0.865,584,154,269,0.7913,0.6846,0.7341,0.7346,DDoS_HTTP: 46; Uploading: 28; Normal: 17,Port_Scanning: 125; DDoS_HTTP: 46; Uploading: 34
+Fingerprinting,RandomForest,ClassWeight,853,751,0.88,584,167,269,0.7776,0.6846,0.7282,0.7283,DDoS_HTTP: 49; Uploading: 26; Normal: 21,Port_Scanning: 125; DDoS_HTTP: 45; Uploading: 35
+Fingerprinting,RandomForest,RandomOverSampler,853,800,0.938,586,214,267,0.7325,0.687,0.709,0.7091,DDoS_HTTP: 49; Port_Scanning: 43; Uploading: 34,Port_Scanning: 118; DDoS_HTTP: 44; Uploading: 39
+Fingerprinting,RandomForest,SMOTE,853,2818,3.304,614,2204,239,0.2179,0.7198,0.3345,0.3354,Port_Scanning: 572; DDoS_HTTP: 442; Uploading: 401,Port_Scanning: 105; Uploading: 36; DDoS_HTTP: 34
+Fingerprinting,XGBoost,Baseline,853,625,0.733,567,58,286,0.9072,0.6647,0.7673,0.7666,DDoS_ICMP: 58,Port_Scanning: 134; DDoS_HTTP: 128; DDoS_ICMP: 12
+Fingerprinting,XGBoost,ClassWeight,853,2355,2.761,602,1753,251,0.2556,0.7057,0.3753,0.3757,DDoS_HTTP: 436; Uploading: 361; Normal: 181,Port_Scanning: 132; DDoS_HTTP: 105; Uploading: 8
+Fingerprinting,XGBoost,RandomOverSampler,853,2346,2.75,600,1746,253,0.2558,0.7034,0.3751,0.377,DDoS_HTTP: 448; Uploading: 352; Normal: 184,Port_Scanning: 132; DDoS_HTTP: 100; Uploading: 11
+Fingerprinting,XGBoost,SMOTE,853,2426,2.844,598,1828,255,0.2465,0.7011,0.3647,0.3654,DDoS_HTTP: 382; Port_Scanning: 370; Uploading: 335,Port_Scanning: 126; DDoS_HTTP: 104; DDoS_ICMP: 15
+MITM,RandomForest,Baseline,358,361,1.008,357,4,1,0.9889,0.9972,0.993,0.9931,DDoS_ICMP: 1; Ransomware: 1; SQL_injection: 1,Ransomware: 1
+MITM,RandomForest,ClassWeight,358,368,1.028,357,11,1,0.9701,0.9972,0.9835,0.9838,DDoS_HTTP: 1; DDoS_ICMP: 1; Fingerprinting: 1,Fingerprinting: 1
+MITM,RandomForest,RandomOverSampler,358,368,1.028,357,11,1,0.9701,0.9972,0.9835,0.9838,DDoS_HTTP: 1; DDoS_ICMP: 1; Fingerprinting: 1,Fingerprinting: 1
+MITM,RandomForest,SMOTE,358,370,1.034,358,12,0,0.9676,1.0,0.9835,0.9838,Backdoor: 1; DDoS_HTTP: 1; DDoS_ICMP: 1,
+MITM,XGBoost,Baseline,358,357,0.997,357,0,1,1.0,0.9972,0.9986,0.9986,,Ransomware: 1
+MITM,XGBoost,ClassWeight,358,370,1.034,357,13,1,0.9649,0.9972,0.9808,0.9811,DDoS_UDP: 2; DDoS_HTTP: 1; Fingerprinting: 1,Fingerprinting: 1
+MITM,XGBoost,RandomOverSampler,358,370,1.034,357,13,1,0.9649,0.9972,0.9808,0.9811,DDoS_UDP: 2; DDoS_HTTP: 1; Fingerprinting: 1,Fingerprinting: 1
+MITM,XGBoost,SMOTE,358,357,0.997,357,0,1,1.0,0.9972,0.9986,0.9986,,Fingerprinting: 1
