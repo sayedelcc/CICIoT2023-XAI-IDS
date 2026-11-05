@@ -14,7 +14,7 @@ models on two independent datasets: **CICIoT2023** (34 classes) and **Edge-IIoTs
 | `edge_confusion.py` | Edge-IIoTset: pooled confusion matrices of RF and XGBoost for the rare classes (Fingerprinting, MITM); shows where false positives and false negatives come from (imports code from `edge_strategies.py`) |
 | `xai_eval.py` | Quantitative evaluation of SHAP vs LIME (deletion fidelity, stability, agreement, cost) |
 | `requirements.txt` | Pinned library versions |
-| `results/` | Result tables (CSV) and figures produced by the scripts above |
+| `results_cic_strategies/`, `results_edge_strategies/`, `results_edge_confusion/`, `results_xai_edge/`, `results_xai_cic/` | Result tables (CSV) and figures produced by the scripts above, one folder per script run |
 
 ## Environment
 
