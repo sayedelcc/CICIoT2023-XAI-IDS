@@ -1,0 +1,211 @@
+Variant,Strategy,Model,Class,F1
+Text encoded,Baseline,RandomForest,Backdoor,0.9560499533258646
+Text encoded,Baseline,RandomForest,DDoS_HTTP,0.8604104996630548
+Text encoded,Baseline,RandomForest,DDoS_ICMP,0.9998090873934202
+Text encoded,Baseline,RandomForest,DDoS_TCP,1.0
+Text encoded,Baseline,RandomForest,DDoS_UDP,0.9999654815326199
+Text encoded,Baseline,RandomForest,Fingerprinting,0.7558802310132692
+Text encoded,Baseline,RandomForest,MITM,1.0
+Text encoded,Baseline,RandomForest,Normal,1.0
+Text encoded,Baseline,RandomForest,Password,0.7793735906798781
+Text encoded,Baseline,RandomForest,Port_Scanning,0.9664549543410235
+Text encoded,Baseline,RandomForest,Ransomware,0.9467613000775351
+Text encoded,Baseline,RandomForest,SQL_injection,0.8156462038334447
+Text encoded,Baseline,RandomForest,Uploading,0.8061049953699249
+Text encoded,Baseline,RandomForest,Vulnerability_scanner,0.9679447815001069
+Text encoded,Baseline,RandomForest,XSS,0.8495339912088916
+Text encoded,Baseline,XGBoost,Backdoor,0.9586420316479858
+Text encoded,Baseline,XGBoost,DDoS_HTTP,0.9281995185758303
+Text encoded,Baseline,XGBoost,DDoS_ICMP,0.9972841025735197
+Text encoded,Baseline,XGBoost,DDoS_TCP,1.0
+Text encoded,Baseline,XGBoost,DDoS_UDP,0.9996896907581159
+Text encoded,Baseline,XGBoost,Fingerprinting,0.7634942314632818
+Text encoded,Baseline,XGBoost,MITM,0.9985915492957746
+Text encoded,Baseline,XGBoost,Normal,1.0
+Text encoded,Baseline,XGBoost,Password,0.8298639062622856
+Text encoded,Baseline,XGBoost,Port_Scanning,0.9676481258875234
+Text encoded,Baseline,XGBoost,Ransomware,0.9499798533953541
+Text encoded,Baseline,XGBoost,SQL_injection,0.8397599080959941
+Text encoded,Baseline,XGBoost,Uploading,0.8539063263214992
+Text encoded,Baseline,XGBoost,Vulnerability_scanner,0.9763237673356461
+Text encoded,Baseline,XGBoost,XSS,0.9202122143094016
+Text encoded,RandomOverSampler,RandomForest,Backdoor,0.955027248950666
+Text encoded,RandomOverSampler,RandomForest,DDoS_HTTP,0.8568951415072303
+Text encoded,RandomOverSampler,RandomForest,DDoS_ICMP,0.9998090873934202
+Text encoded,RandomOverSampler,RandomForest,DDoS_TCP,1.0
+Text encoded,RandomOverSampler,RandomForest,DDoS_UDP,0.9999654815326199
+Text encoded,RandomOverSampler,RandomForest,Fingerprinting,0.7357677255768047
+Text encoded,RandomOverSampler,RandomForest,MITM,1.0
+Text encoded,RandomOverSampler,RandomForest,Normal,1.0
+Text encoded,RandomOverSampler,RandomForest,Password,0.7757022325098584
+Text encoded,RandomOverSampler,RandomForest,Port_Scanning,0.9611386449022833
+Text encoded,RandomOverSampler,RandomForest,Ransomware,0.945224581730719
+Text encoded,RandomOverSampler,RandomForest,SQL_injection,0.8148176530237604
+Text encoded,RandomOverSampler,RandomForest,Uploading,0.8016161554417213
+Text encoded,RandomOverSampler,RandomForest,Vulnerability_scanner,0.9679883409103869
+Text encoded,RandomOverSampler,RandomForest,XSS,0.8436449177059261
+Text encoded,RandomOverSampler,XGBoost,Backdoor,0.9597755855099074
+Text encoded,RandomOverSampler,XGBoost,DDoS_HTTP,0.9267786630845792
+Text encoded,RandomOverSampler,XGBoost,DDoS_ICMP,0.9963606913340252
+Text encoded,RandomOverSampler,XGBoost,DDoS_TCP,1.0
+Text encoded,RandomOverSampler,XGBoost,DDoS_UDP,0.9998620213620498
+Text encoded,RandomOverSampler,XGBoost,Fingerprinting,0.5830329398670199
+Text encoded,RandomOverSampler,XGBoost,MITM,0.9985915492957746
+Text encoded,RandomOverSampler,XGBoost,Normal,1.0
+Text encoded,RandomOverSampler,XGBoost,Password,0.82936165356738
+Text encoded,RandomOverSampler,XGBoost,Port_Scanning,0.9626898905625205
+Text encoded,RandomOverSampler,XGBoost,Ransomware,0.9450545890645323
+Text encoded,RandomOverSampler,XGBoost,SQL_injection,0.8407063639422854
+Text encoded,RandomOverSampler,XGBoost,Uploading,0.852156102141097
+Text encoded,RandomOverSampler,XGBoost,Vulnerability_scanner,0.9756614754866609
+Text encoded,RandomOverSampler,XGBoost,XSS,0.9201880162132545
+Text encoded,SMOTE,RandomForest,Backdoor,0.9558767839276779
+Text encoded,SMOTE,RandomForest,DDoS_HTTP,0.8134091131609384
+Text encoded,SMOTE,RandomForest,DDoS_ICMP,0.9980871923256627
+Text encoded,SMOTE,RandomForest,DDoS_TCP,1.0
+Text encoded,SMOTE,RandomForest,DDoS_UDP,0.9999654815326199
+Text encoded,SMOTE,RandomForest,Fingerprinting,0.48545656133142073
+Text encoded,SMOTE,RandomForest,MITM,1.0
+Text encoded,SMOTE,RandomForest,Normal,1.0
+Text encoded,SMOTE,RandomForest,Password,0.7602284830079697
+Text encoded,SMOTE,RandomForest,Port_Scanning,0.9318372616837779
+Text encoded,SMOTE,RandomForest,Ransomware,0.9406923514291865
+Text encoded,SMOTE,RandomForest,SQL_injection,0.7907057434625576
+Text encoded,SMOTE,RandomForest,Uploading,0.769520337299484
+Text encoded,SMOTE,RandomForest,Vulnerability_scanner,0.9545867288032662
+Text encoded,SMOTE,RandomForest,XSS,0.8233907895542234
+Text encoded,SMOTE,XGBoost,Backdoor,0.9601654667656814
+Text encoded,SMOTE,XGBoost,DDoS_HTTP,0.9220171784000739
+Text encoded,SMOTE,XGBoost,DDoS_ICMP,0.9964789619495203
+Text encoded,SMOTE,XGBoost,DDoS_TCP,1.0
+Text encoded,SMOTE,XGBoost,DDoS_UDP,0.9998619975726337
+Text encoded,SMOTE,XGBoost,Fingerprinting,0.49810701180717265
+Text encoded,SMOTE,XGBoost,MITM,0.9985915492957746
+Text encoded,SMOTE,XGBoost,Normal,1.0
+Text encoded,SMOTE,XGBoost,Password,0.8271275566415973
+Text encoded,SMOTE,XGBoost,Port_Scanning,0.9492462004195723
+Text encoded,SMOTE,XGBoost,Ransomware,0.9435170337786929
+Text encoded,SMOTE,XGBoost,SQL_injection,0.8384825690665059
+Text encoded,SMOTE,XGBoost,Uploading,0.8536346929010875
+Text encoded,SMOTE,XGBoost,Vulnerability_scanner,0.9737494035086648
+Text encoded,SMOTE,XGBoost,XSS,0.9154612050599393
+Text encoded,SMOTENC,RandomForest,Backdoor,0.9556994870752427
+Text encoded,SMOTENC,RandomForest,DDoS_HTTP,0.8131994029610133
+Text encoded,SMOTENC,RandomForest,DDoS_ICMP,0.9980871923256627
+Text encoded,SMOTENC,RandomForest,DDoS_TCP,1.0
+Text encoded,SMOTENC,RandomForest,DDoS_UDP,0.9999654815326199
+Text encoded,SMOTENC,RandomForest,Fingerprinting,0.48257849713335244
+Text encoded,SMOTENC,RandomForest,MITM,1.0
+Text encoded,SMOTENC,RandomForest,Normal,1.0
+Text encoded,SMOTENC,RandomForest,Password,0.7632090568585499
+Text encoded,SMOTENC,RandomForest,Port_Scanning,0.9311925953787273
+Text encoded,SMOTENC,RandomForest,Ransomware,0.9402941938210825
+Text encoded,SMOTENC,RandomForest,SQL_injection,0.7957310994707633
+Text encoded,SMOTENC,RandomForest,Uploading,0.7728254286579322
+Text encoded,SMOTENC,RandomForest,Vulnerability_scanner,0.9544939599457537
+Text encoded,SMOTENC,RandomForest,XSS,0.8231232739188886
+Text encoded,SMOTENC,XGBoost,Backdoor,0.9604144185167602
+Text encoded,SMOTENC,XGBoost,DDoS_HTTP,0.9219784020737276
+Text encoded,SMOTENC,XGBoost,DDoS_ICMP,0.9964022172005084
+Text encoded,SMOTENC,XGBoost,DDoS_TCP,1.0
+Text encoded,SMOTENC,XGBoost,DDoS_UDP,0.9998619975726337
+Text encoded,SMOTENC,XGBoost,Fingerprinting,0.5017792801899164
+Text encoded,SMOTENC,XGBoost,MITM,0.9985915492957746
+Text encoded,SMOTENC,XGBoost,Normal,1.0
+Text encoded,SMOTENC,XGBoost,Password,0.8287825894352151
+Text encoded,SMOTENC,XGBoost,Port_Scanning,0.9505069343466834
+Text encoded,SMOTENC,XGBoost,Ransomware,0.9441652610706287
+Text encoded,SMOTENC,XGBoost,SQL_injection,0.8403863716518556
+Text encoded,SMOTENC,XGBoost,Uploading,0.8527411554119025
+Text encoded,SMOTENC,XGBoost,Vulnerability_scanner,0.9731257446998562
+Text encoded,SMOTENC,XGBoost,XSS,0.9157644247294794
+Text unused (paper),Baseline,RandomForest,Backdoor,0.9414582881569838
+Text unused (paper),Baseline,RandomForest,DDoS_HTTP,0.6962152322386893
+Text unused (paper),Baseline,RandomForest,DDoS_ICMP,0.999694801856555
+Text unused (paper),Baseline,RandomForest,DDoS_TCP,0.9999024865919065
+Text unused (paper),Baseline,RandomForest,DDoS_UDP,0.999965529127887
+Text unused (paper),Baseline,RandomForest,Fingerprinting,0.7345943061352093
+Text unused (paper),Baseline,RandomForest,MITM,0.9930740454905995
+Text unused (paper),Baseline,RandomForest,Normal,0.8327769351507148
+Text unused (paper),Baseline,RandomForest,Password,0.7135844465592343
+Text unused (paper),Baseline,RandomForest,Port_Scanning,0.9232129096952079
+Text unused (paper),Baseline,RandomForest,Ransomware,0.9055882388038856
+Text unused (paper),Baseline,RandomForest,SQL_injection,0.7242770859658719
+Text unused (paper),Baseline,RandomForest,Uploading,0.6322297689397964
+Text unused (paper),Baseline,RandomForest,Vulnerability_scanner,0.9559343205485586
+Text unused (paper),Baseline,RandomForest,XSS,0.7594928242371812
+Text unused (paper),Baseline,XGBoost,Backdoor,0.9608965694612076
+Text unused (paper),Baseline,XGBoost,DDoS_HTTP,0.6916738024009857
+Text unused (paper),Baseline,XGBoost,DDoS_ICMP,0.9972841025735197
+Text unused (paper),Baseline,XGBoost,DDoS_TCP,1.0
+Text unused (paper),Baseline,XGBoost,DDoS_UDP,0.9994831504004777
+Text unused (paper),Baseline,XGBoost,Fingerprinting,0.7666121177297313
+Text unused (paper),Baseline,XGBoost,MITM,0.9985915492957746
+Text unused (paper),Baseline,XGBoost,Normal,0.8643478391758977
+Text unused (paper),Baseline,XGBoost,Password,0.808298183013257
+Text unused (paper),Baseline,XGBoost,Port_Scanning,0.9283438293291706
+Text unused (paper),Baseline,XGBoost,Ransomware,0.9328472187335866
+Text unused (paper),Baseline,XGBoost,SQL_injection,0.7816437436971473
+Text unused (paper),Baseline,XGBoost,Uploading,0.7225100015511947
+Text unused (paper),Baseline,XGBoost,Vulnerability_scanner,0.9740026928820302
+Text unused (paper),Baseline,XGBoost,XSS,0.8438359474240696
+Text unused (paper),RandomOverSampler,RandomForest,Backdoor,0.939156974704184
+Text unused (paper),RandomOverSampler,RandomForest,DDoS_HTTP,0.6424668516042412
+Text unused (paper),RandomOverSampler,RandomForest,DDoS_ICMP,0.9998472407699941
+Text unused (paper),RandomOverSampler,RandomForest,DDoS_TCP,0.9999512432959532
+Text unused (paper),RandomOverSampler,RandomForest,DDoS_UDP,0.999965529127887
+Text unused (paper),RandomOverSampler,RandomForest,Fingerprinting,0.7090609079337908
+Text unused (paper),RandomOverSampler,RandomForest,MITM,0.9838108875958629
+Text unused (paper),RandomOverSampler,RandomForest,Normal,0.8576939465606056
+Text unused (paper),RandomOverSampler,RandomForest,Password,0.6836751012134128
+Text unused (paper),RandomOverSampler,RandomForest,Port_Scanning,0.9125720370516452
+Text unused (paper),RandomOverSampler,RandomForest,Ransomware,0.9021430142723567
+Text unused (paper),RandomOverSampler,RandomForest,SQL_injection,0.7106302292719706
+Text unused (paper),RandomOverSampler,RandomForest,Uploading,0.6178867744805262
+Text unused (paper),RandomOverSampler,RandomForest,Vulnerability_scanner,0.9557197356070999
+Text unused (paper),RandomOverSampler,RandomForest,XSS,0.7440080959706357
+Text unused (paper),RandomOverSampler,XGBoost,Backdoor,0.9599861386425218
+Text unused (paper),RandomOverSampler,XGBoost,DDoS_HTTP,0.69454941356947
+Text unused (paper),RandomOverSampler,XGBoost,DDoS_ICMP,0.9963607210419048
+Text unused (paper),RandomOverSampler,XGBoost,DDoS_TCP,0.9999023913174481
+Text unused (paper),RandomOverSampler,XGBoost,DDoS_UDP,0.9998620213538494
+Text unused (paper),RandomOverSampler,XGBoost,Fingerprinting,0.37702515396603065
+Text unused (paper),RandomOverSampler,XGBoost,MITM,0.98110818489316
+Text unused (paper),RandomOverSampler,XGBoost,Normal,0.9120433495820756
+Text unused (paper),RandomOverSampler,XGBoost,Password,0.756827075290972
+Text unused (paper),RandomOverSampler,XGBoost,Port_Scanning,0.9241998288371345
+Text unused (paper),RandomOverSampler,XGBoost,Ransomware,0.9323878266743074
+Text unused (paper),RandomOverSampler,XGBoost,SQL_injection,0.736678328858768
+Text unused (paper),RandomOverSampler,XGBoost,Uploading,0.7099750847272366
+Text unused (paper),RandomOverSampler,XGBoost,Vulnerability_scanner,0.9721019462769217
+Text unused (paper),RandomOverSampler,XGBoost,XSS,0.8019760895716767
+Text unused (paper),SMOTE,RandomForest,Backdoor,0.9372364094895508
+Text unused (paper),SMOTE,RandomForest,DDoS_HTTP,0.6505222198086884
+Text unused (paper),SMOTE,RandomForest,DDoS_ICMP,0.9980871923256627
+Text unused (paper),SMOTE,RandomForest,DDoS_TCP,0.9999512432959532
+Text unused (paper),SMOTE,RandomForest,DDoS_UDP,0.9999310106605069
+Text unused (paper),SMOTE,RandomForest,Fingerprinting,0.33539507788375306
+Text unused (paper),SMOTE,RandomForest,MITM,0.9838494752863894
+Text unused (paper),SMOTE,RandomForest,Normal,0.8531643384144649
+Text unused (paper),SMOTE,RandomForest,Password,0.681324135044701
+Text unused (paper),SMOTE,RandomForest,Port_Scanning,0.8891351258070863
+Text unused (paper),SMOTE,RandomForest,Ransomware,0.8995312014809766
+Text unused (paper),SMOTE,RandomForest,SQL_injection,0.6943710973016292
+Text unused (paper),SMOTE,RandomForest,Uploading,0.5928937593796391
+Text unused (paper),SMOTE,RandomForest,Vulnerability_scanner,0.9441267991476844
+Text unused (paper),SMOTE,RandomForest,XSS,0.6386966580745067
+Text unused (paper),SMOTE,XGBoost,Backdoor,0.9601309213820033
+Text unused (paper),SMOTE,XGBoost,DDoS_HTTP,0.6947765642560033
+Text unused (paper),SMOTE,XGBoost,DDoS_ICMP,0.9964022177950207
+Text unused (paper),SMOTE,XGBoost,DDoS_TCP,0.9998536822971286
+Text unused (paper),SMOTE,XGBoost,DDoS_UDP,0.9998275267005207
+Text unused (paper),SMOTE,XGBoost,Fingerprinting,0.3654393381524562
+Text unused (paper),SMOTE,XGBoost,MITM,0.9985915492957746
+Text unused (paper),SMOTE,XGBoost,Normal,0.8949290690118629
+Text unused (paper),SMOTE,XGBoost,Password,0.7629455110777098
+Text unused (paper),SMOTE,XGBoost,Port_Scanning,0.9132295102143818
+Text unused (paper),SMOTE,XGBoost,Ransomware,0.9327849373021919
+Text unused (paper),SMOTE,XGBoost,SQL_injection,0.7450861208133986
+Text unused (paper),SMOTE,XGBoost,Uploading,0.7121413181503087
+Text unused (paper),SMOTE,XGBoost,Vulnerability_scanner,0.9681239997487635
+Text unused (paper),SMOTE,XGBoost,XSS,0.8199530589946539

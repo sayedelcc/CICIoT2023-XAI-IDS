@@ -1,0 +1,21 @@
+Model,Comparison,Metric,Mean diff,p-value,p-value (Holm)
+RandomForest,Baseline: text encoded vs text unused,Macro F1,0.059462256696050084,0.001953125,0.0390625
+RandomForest,Text encoded: RandomOverSampler vs Baseline,Macro F1,-0.0030891905835757514,0.001953125,0.0390625
+RandomForest,Text encoded: SMOTE vs Baseline,Macro F1,-0.03201188282801652,0.001953125,0.0390625
+RandomForest,Text encoded: SMOTENC vs Baseline,Macro F1,-0.03156902672396299,0.001953125,0.0390625
+RandomForest,Text encoded: SMOTENC vs SMOTE,Macro F1,0.00044285610405353504,0.4921875,0.64453125
+RandomForest,Baseline: text encoded vs text unused,Balanced accuracy,0.06451364198428212,0.001953125,0.0390625
+RandomForest,Text encoded: RandomOverSampler vs Baseline,Balanced accuracy,-0.0018844096399628142,0.005859375,0.046875
+RandomForest,Text encoded: SMOTE vs Baseline,Balanced accuracy,-0.012477484032277187,0.001953125,0.0390625
+RandomForest,Text encoded: SMOTENC vs Baseline,Balanced accuracy,-0.011754376123886866,0.001953125,0.0390625
+RandomForest,Text encoded: SMOTENC vs SMOTE,Balanced accuracy,0.0007231079083903191,0.322265625,0.64453125
+XGBoost,Baseline: text encoded vs text unused,Macro F1,0.047548298550277465,0.001953125,0.0390625
+XGBoost,Text encoded: RandomOverSampler vs Baseline,Macro F1,-0.012891712299408376,0.001953125,0.0390625
+XGBoost,Text encoded: SMOTE vs Baseline,Macro F1,-0.02047695991701972,0.001953125,0.0390625
+XGBoost,Text encoded: SMOTENC vs Baseline,Macro F1,-0.019939658648484716,0.001953125,0.0390625
+XGBoost,Text encoded: SMOTENC vs SMOTE,Macro F1,0.0005373012685350065,0.10546875,0.421875
+XGBoost,Baseline: text encoded vs text unused,Balanced accuracy,0.05519821181738843,0.001953125,0.0390625
+XGBoost,Text encoded: RandomOverSampler vs Baseline,Balanced accuracy,0.0037760348665631495,0.005859375,0.046875
+XGBoost,Text encoded: SMOTE vs Baseline,Balanced accuracy,0.002255779619045184,0.048828125,0.244140625
+XGBoost,Text encoded: SMOTENC vs Baseline,Balanced accuracy,0.002547128083978023,0.02734375,0.1640625
+XGBoost,Text encoded: SMOTENC vs SMOTE,Balanced accuracy,0.00029134846493283906,0.193359375,0.580078125
