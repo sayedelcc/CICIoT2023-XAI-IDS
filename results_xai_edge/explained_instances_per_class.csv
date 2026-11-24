@@ -1,0 +1,16 @@
+,n_instances
+Backdoor,10
+DDoS_HTTP,10
+DDoS_ICMP,10
+DDoS_TCP,10
+DDoS_UDP,10
+Fingerprinting,10
+MITM,10
+Normal,10
+Password,10
+Port_Scanning,10
+Ransomware,10
+SQL_injection,10
+Uploading,10
+Vulnerability_scanner,10
+XSS,10
