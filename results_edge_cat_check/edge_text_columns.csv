@@ -1,0 +1,8 @@
+Column,Distinct values,Numeric-convertible (%),Non-numeric values,Non-numeric (%),Treated as numeric by the pipeline (>95% convertible),Most frequent non-numeric values
+http.request.method,6,95.273,7195,4.727,True,GET: 6675; POST: 267; TRACE: 252; OPTIONS: 1
+http.referer,4,99.809,290,0.191,True,127.0.0.1: 252; () { _; } >_[$($())] { echo 93e4r0-CVE-2014-6278: true; echo;echo; }: 38
+http.request.version,8,95.273,7195,4.727,True,"HTTP/1.1: 6492; HTTP/1.0: 698; Src=javascript:alert('Vulnerable')><Img Src=\"" HTTP/1.1: 2; /etc/passwd|?data=Download HTTP/1.1: 1; -a HTTP/1.1: 1"
+dns.qry.name.len,8,99.981,29,0.019,True,1.debian.pool.ntp.org: 10; 0.debian.pool.ntp.org: 8; 3.debian.pool.ntp.org: 7; 2.debian.pool.ntp.org: 3; _googlecast._tcp.local: 1
+mqtt.conack.flags,3,99.153,1289,0.847,True,0x00000000: 1289
+mqtt.protoname,3,99.179,1250,0.821,True,MQTT: 1250
+mqtt.topic,3,99.181,1246,0.819,True,Temperature_and_Humidity: 1246

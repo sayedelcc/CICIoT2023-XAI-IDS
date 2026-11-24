@@ -1,0 +1,23 @@
+Column,Distinct values,Type,Values
+Drate,7,few distinct values,"0.0, 0.003882492486894, 0.0093716496937304, 0.0133264915835357, 0.0151176161888779, 0.0271074288295758, 0.0697875328301252"
+fin_flag_number,2,binary,"0.0, 1.0"
+syn_flag_number,2,binary,"0.0, 1.0"
+rst_flag_number,2,binary,"0.0, 1.0"
+psh_flag_number,2,binary,"0.0, 1.0"
+ack_flag_number,2,binary,"0.0, 1.0"
+ece_flag_number,1,binary,0.0
+cwr_flag_number,1,binary,0.0
+HTTP,2,binary,"0.0, 1.0"
+HTTPS,2,binary,"0.0, 1.0"
+DNS,2,binary,"0.0, 1.0"
+Telnet,1,binary,0.0
+SMTP,1,binary,0.0
+SSH,2,binary,"0.0, 1.0"
+IRC,1,binary,0.0
+TCP,2,binary,"0.0, 1.0"
+UDP,2,binary,"0.0, 1.0"
+DHCP,1,binary,0.0
+ARP,2,binary,"0.0, 1.0"
+ICMP,2,binary,"0.0, 1.0"
+IPv,2,binary,"0.0, 1.0"
+LLC,2,binary,"0.0, 1.0"
