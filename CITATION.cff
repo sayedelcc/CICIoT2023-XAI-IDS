@@ -17,7 +17,8 @@ authors:
     affiliation: "Faculty of Computer and Information Sciences, Ain Shams University, Cairo, Egypt"
 repository-code: "https://github.com/sayedelcc/CICIoT2023-XAI-IDS"
 license: MIT
-version: "1.0.0"
+doi: 10.5281/zenodo.24504226
+version: "1.0.1"
 keywords:
   - intrusion detection
   - Internet of Things

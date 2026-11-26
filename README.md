@@ -1,6 +1,6 @@
 # Class-imbalance handling and explainability for multi-class IoT intrusion detection
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23977260.svg)](https://doi.org/10.5281/zenodo.23977260)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24504226.svg)](https://doi.org/10.5281/zenodo.24504226)
 
 Code accompanying the study of imbalance-handling strategies (class weighting, random oversampling, SMOTE,
 Borderline-SMOTE, ADASYN) and of SHAP vs LIME explanations for tree-based and neural intrusion-detection
@@ -84,7 +84,7 @@ Set `QUICK_TEST = True` in `xai_eval.py` or `N_FOLDS = 2` in the strategy script
 
 ## How to cite
 
-Archived releases: https://doi.org/10.5281/zenodo.23977260 (see also `CITATION.cff`).
+Archived releases: https://doi.org/10.5281/zenodo.24504226 (see also `CITATION.cff`).
 
 ## License
 
